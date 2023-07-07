@@ -1,0 +1,30 @@
+version: "2.19.1"
+services:
+  api: 
+    build: ./
+    container_name: basic
+    restart: always
+    ports: 
+      - '4000:4000'
+    volumes:
+      - ./:/app
+      - D:/Docker/node_modules:/app/node_modules
+  reactapp:
+    build: ./blog
+    container_name: reactapp
+    restart: always
+    ports: 
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+
+# tty: When you set tty: true in your Docker Compose file or when running a container, 
+# Docker allocates a pseudo-TTY for the container. This allows you to interact with the 
+# container's command line in an interactive manner, similar to running commands in a terminal. 
+#It enables features like color output and allows you to use tools that require a TTY, such as 
+# text editors or interactive shells.
+
+# stdin_open: Setting stdin_open: true in your Docker Compose file or when running a container keeps 
+# the container's standard input open. This means that the container can receive input from the user through stdin. 
+# It is often used in conjunction with tty: true to enable interactive input and output with the container. With stdin_open 
+# set to true, you can enter input into the container's command line, such as typing commands or responding to prompts.
